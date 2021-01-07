@@ -47,7 +47,7 @@
 | judgment_id        | integer             | null: false                                |
 | dey_id             | integer             | null: false                                | 
 | prefecture_id      | integer             | null: false                                |
-| user               | integer             | reference, null: false, foreign_key:true   |
+| user               | reference           | null: false, foreign_key:true              |
 
 ### Association
 - belongs_to :user 
@@ -56,10 +56,10 @@
 
 ## history table
 
-| Column      | Type       | Options                                                |
-|-------------|------------|--------------------------------------------------------|
-| user        | integer    | references, null: false, foreign_key: true             |
-| product     | integer    | references, null: false, foreign_key: true             |
+| Column      | Type       | Options                                    |
+|-------------|------------|--------------------------------------------|
+| user        | references | null: false, foreign_key: true             |
+| product     | references | null: false, foreign_key: true             |
 
 
 ### Association
