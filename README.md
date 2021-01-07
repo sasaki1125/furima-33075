@@ -1,6 +1,6 @@
 # DB 設計
 
-## users table
+## user table
 
 | Column             | Type                | Options                 |
 |--------------------|---------------------|-------------------------|
@@ -15,15 +15,13 @@
 
 ### Association
 
-- has_many :products dependent: :destroy
-- belongs_to :destination dependent: :destroy
-- belongs_to :card dependent: :destroy
+- has_many :products, dependent: :destroy
+- has_many :history, dependent: :destroy
 
 ##  destination table
 
 | Column                              | Type       | Options                              |
 |-------------------------------------|------------|--------------------------------------|
-| user_id                             | integer    | null: false, foreign_key: true       |
 | family_name                         | string     | null: false                          |
 | first_name                          | string     | null: false                          |
 | family_name_kana                    | string     | null: false                          |
@@ -35,63 +33,38 @@
 | building_name                       | string     | null: false                          |
 | phone_number                        | string     |                                      |
 
-
 ### Association
 
-- belongs_to :user
-
-## card table
-
-| Column      | Type       | Options           |
-|-------------|------------|-------------------|
-| user_id     | text       | null: false       |
-| card_id     | references | foreign_key: true |
-
-### Association
-
-- belongs_to :user
+- belongs_to :history
 
 ## product table
 
 | Column             | Type                | Options                                    |
 |--------------------|---------------------|--------------------------------------------|
 | name               | string              | null: false                                |  
-| price              | string              | null: false                                |
-| description        | string              | null: false                                |
-| status             | string              | null: false                                |
-| size               | string              | null: false                                |
-| judgment           | string              | null: false                                | 
-| prefecture_id      | string              | null: false                                |
-| user_id            | integer             | null: false, foreign_key: true             |
+| price              | integer             | null: false                                |
+| status_id          | integer             | null: false                                |
+| dey_id             | integer             | null: false                                |
+| judgment_id        | integer             | null: false                                | 
+| prefecture_id      | integer             | null: false                                |
+| user               | integer             | null: false, foreign_key: true             |
 
 ### Association
-- belongs_to :user dependent: :destroy
-- has_many :images dependent: :destroy
-- belongs_to_active_hash :prefecture
+- belongs_to :user 
+- has_one : history
 
-## image table
 
-| Column      | Type       | Options           |
-|-------------|------------|-------------------|
-| image       | string     | null: false       |
-| product     | integer    | foreign_key: true |
-
-### Association
-
-belongs_to :product
-
-## purchase table
+## history table
 
 | Column      | Type       | Options                                    |
 |-------------|------------|--------------------------------------------|
-| user_id     | integer    | null: false, foreign_key: true             |
-| product_id  | integer    | null: false, foreign_key: true             |
+| user        | integer    | null: false, foreign_key: true             |
+| product     | integer    | null: false, foreign_key: true             |
 
 
 ### Association
-
- belongs_to :user
- belongs_to :product
+- belongs_to :user
+- belongs_to :product
 
 
 
