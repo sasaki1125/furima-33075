@@ -40,14 +40,14 @@
 | Column             | Type                | Options                                    |
 |--------------------|---------------------|--------------------------------------------|
 | name               | string              | null: false                                |  
-| price              | string              | null: false                                |
+| price              | integer             | null: false                                |
 | status_id          | integer             | null: false                                |
 | category_id        | integer             | null: false                                |
 | description        | text                | null: false                                |
 | judgment_id        | integer             | null: false                                |
 | dey_id             | integer             | null: false                                | 
 | prefecture_id      | integer             | null: false                                |
-| user               | integer             | null: false, foreign_key: true             |
+| user               | integer             | reference, null: false, foreign_key:true   |
 
 ### Association
 - belongs_to :user 
