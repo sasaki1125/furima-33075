@@ -5,10 +5,12 @@
 | Column             | Type                | Options                  |
 |--------------------|---------------------|------------------------- |
 | email              | string              | null: false ,unique: true|
-| password           | string              | null: false              |
+| encrypted_password | string              | null: false              |
 | nickname           | string              | null: false              |
 | family_name        | string              | null: false              |
 | first_name         | string              | null: false              |
+| family_name_kana   | string              | null: false              |
+| first_name_kana    | string              | null: false              |
 | birth_day          | date                | null: false              | 
 
 ### Association
@@ -20,14 +22,14 @@
 
 | Column                              | Type       | Options                              |
 |-------------------------------------|------------|--------------------------------------|
-| family_name                         | string     | null: false                          |
-| first_name                          | string     | null: false                          |
 | post_code                           | string     | null: false                          |
-| prefecture                          | string     | null: false                          |
+| prefecture_id                       | integer    | null: false                          |
 | city                                | string     | null: false                          |
 | address                             | string     | null: false                          |
 | building_name                       | string     |                                      |
-| text                                |text        |null: false                           |
+| phone_number                        | string     |null: false                           |
+| history                             | reference  |null: false,foreign_key:true          |
+
 
 ### Association
 
@@ -37,13 +39,15 @@
 
 | Column             | Type                | Options                                    |
 |--------------------|---------------------|--------------------------------------------|
-| name_id            | integer             | null: false                                |  
-| price_id           | integer             | null: false                                |
+| name               | string              | null: false                                |  
+| price              | string              | null: false                                |
 | status_id          | integer             | null: false                                |
-| dey_id             | integer             | null: false                                |
-| judgment_id        | integer             | null: false                                | 
+| category_id        | integer             | null: false                                |
+| description        | text                | null: false                                |
+| judgment_id        | integer             | null: false                                |
+| dey_id             | integer             | null: false                                | 
 | prefecture_id      | integer             | null: false                                |
-| user_id            | integer             | null: false, foreign_key: true             |
+| user               | integer             | null: false, foreign_key: true             |
 
 ### Association
 - belongs_to :user 
