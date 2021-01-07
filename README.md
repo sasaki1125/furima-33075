@@ -45,7 +45,7 @@
 | category_id        | integer             | null: false                                |
 | description        | text                | null: false                                |
 | judgment_id        | integer             | null: false                                |
-| dey_id             | integer             | null: false                                | 
+| day_id             | integer             | null: false                                | 
 | prefecture_id      | integer             | null: false                                |
 | user               | reference           | null: false, foreign_key:true              |
 
