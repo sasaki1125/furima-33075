@@ -9,5 +9,7 @@ class Judgment < ActiveHash::Base
     { id: 7, name: '全体的に状態が悪い' }
     
   ]
-  
+  include ActiveHash::Associations
+  has_many :product
+
 end
