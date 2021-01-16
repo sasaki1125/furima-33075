@@ -9,7 +9,7 @@ RSpec.describe Product, type: :model do
     end
   end
 
-  
+  context '登録できないとき' do
     it "nameがない場合は登録できないとき" do
       @product.name = ""
       @product.valid?
@@ -26,7 +26,7 @@ RSpec.describe Product, type: :model do
       expect(@product.errors.full_messages).to include("Category is not a number")       
     end
     it "category_id 1の場合は登録できないとき" do
-      @product.category_id = "1"
+      @product.category_id = 1
       @product.valid?
       expect(@product.errors.full_messages).to include("Category must be other than 1")       
     end
@@ -36,7 +36,7 @@ RSpec.describe Product, type: :model do
       expect(@product.errors.full_messages).to include("Judgment is not a number")       
     end
     it "judgment_id 1の場合は登録できないとき" do
-      @product.judgment_id = "1"
+      @product.judgment_id = 1
       @product.valid?
       expect(@product.errors.full_messages).to include("Judgment must be other than 1")       
     end
@@ -46,7 +46,7 @@ RSpec.describe Product, type: :model do
       expect(@product.errors.full_messages).to include("Status is not a number")       
     end
     it "status_id 1の場合は登録できないとき" do
-      @product.status_id = "1"
+      @product.status_id = 1
       @product.valid?
       expect(@product.errors.full_messages).to include("Status must be other than 1")       
     end
@@ -56,7 +56,7 @@ RSpec.describe Product, type: :model do
       expect(@product.errors.full_messages).to include("Prefecture is not a number")       
     end
     it "prefecture_id 1の場合は登録できないとき" do
-      @product.prefecture_id = "1"
+      @product.prefecture_id = 1
       @product.valid?
       expect(@product.errors.full_messages).to include("Prefecture must be other than 1")       
     end 
@@ -66,7 +66,7 @@ RSpec.describe Product, type: :model do
       expect(@product.errors.full_messages).to include("Day is not a number")       
     end
     it "day_id 1の場合は登録できないとき" do
-      @product.day_id = "1"
+      @product.day_id = 1
       @product.valid?
       expect(@product.errors.full_messages).to include("Day must be other than 1")       
     end
@@ -91,14 +91,14 @@ RSpec.describe Product, type: :model do
       expect(@product.errors.full_messages).to include("Price is not a number")       
     end
     it "priceが299円以下の場合は登録できないとき" do
-      @product.price = "299"
+      @product.price = 299
       @product.valid?
       expect(@product.errors.full_messages).to include("Price must be greater than 299")       
     end
     it "priceが9999999円以上の場合は登録できないとき" do
-      @product.price = "19999999"
+      @product.price =  19999999
       @product.valid?
       expect(@product.errors.full_messages).to include("Price must be less than 9999999")       
     end
-  
+  end
 end
