@@ -60,6 +60,11 @@ RSpec.describe Product, type: :model do
       @product.valid?
       expect(@product.errors.full_messages).to include("Price is not a number")       
     end
+    it "priceが空の場合は登録できないとき" do
+      @product.price = ""
+      @product.valid?
+      expect(@product.errors.full_messages).to include("Price can't be blank", "Price is not a number")       
+    end
     it "priceが299円以下の場合は登録できないとき" do
       @product.price = 299
       @product.valid?
