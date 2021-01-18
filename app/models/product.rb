@@ -10,6 +10,8 @@ class Product < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
+  has_one :histories
+
   with_options presence: true do
     validates :name
     validates :description
