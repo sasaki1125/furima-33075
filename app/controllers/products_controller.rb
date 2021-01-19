@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
   before_action :authenticate_user! , only: [:new]
-
+  before_action :details, only: [:show,:edit, :update]
   before_action :contributor_confirmation, only: [:edit, :update, :destroy]
 
   def index
@@ -22,15 +22,12 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
   end
 
   def  edit
-    @product = Product.find(params[:id])
   end
   
   def update
-    @product = Product.find(params[:id])
     if @product = Product.find(params[:id])
        redirect_to root_path
     else
@@ -50,7 +47,10 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     redirect_to root_path unless current_user.id == @product.user_id
   end
-
+  def details
+    @product = Product.find(params[:id])
+  end
 
 end
+
 
