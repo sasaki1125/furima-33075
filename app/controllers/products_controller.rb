@@ -2,7 +2,8 @@ class ProductsController < ApplicationController
 
   before_action :authenticate_user! , only: [:new]
   before_action :details, only: [:show,:edit, :update, :destroy]
-  before_action :contributor_confirmation, only: [:edit, :update]
+  before_action :contributor_confirmation, only: [:edit, :update, :destroy]
+  
 
   def index
     @products = Product.includes(:user).order("created_at ASC")
