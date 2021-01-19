@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
 
   before_action :authenticate_user! , only: [:new]
+
   before_action :contributor_confirmation, only: [:edit, :update, :destroy]
 
   def index
@@ -31,7 +32,11 @@ class ProductsController < ApplicationController
   def update
     product = Product.find(params[:id])
     product.update(product_params)
-    redirect_to root_path
+    if product.save
+       redirect_to root_path
+    else
+       render :edit
+    end
   end
 
 
@@ -43,7 +48,8 @@ class ProductsController < ApplicationController
   end
 
   def contributor_confirmation
-    redirect_to root_path unless current_user == @product.user
+    @product = Product.find(params[:id])
+    redirect_to root_path unless current_user.id == @product.user_id
   end
 
 
