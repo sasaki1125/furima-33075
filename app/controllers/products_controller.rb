@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
   end
   
   def update
-    if @product = Product.find(params[:id])
+    if @product.update(product_params)
        redirect_to root_path
     else
        render :edit
@@ -44,7 +44,6 @@ class ProductsController < ApplicationController
   end
 
   def contributor_confirmation
-    @product = Product.find(params[:id])
     redirect_to root_path unless current_user.id == @product.user_id
   end
   def details
