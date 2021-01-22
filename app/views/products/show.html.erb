@@ -17,10 +17,10 @@
     </div>
     <div class="item-price-box">
       <span class="item-price">
-        <%= @product.price %>
+        ¥<%= @product.price %>
       </span>
       <span class="item-postage">
-        <%= '配送料負担' %>
+        <%= @product.status.name %>
       </span>
     </div>
 
@@ -32,8 +32,8 @@
         <%= link_to '削除', product_path, method: :delete, class:'item-destroy' %>
     <%else%>
       <%# elsif  %>
-    <%# 商品が売れていない場合はこちらを表示しましょう %>
-        <%= link_to '購入画面に進む', "#" ,class:"item-red-btn"%>
+    <%# 商品が売れていない場合はこちらを表示しましょう  カラム名: 必要な情報.id%>
+        <%= link_to '購入画面に進む', product_histories_path(product_id: @product.id), method: :get ,class:"item-red-btn"%>
       <%# end %>
     <% end %>
     <%# //商品が売れていない場合はこちらを表示しましょう %>
@@ -48,27 +48,27 @@
       <tbody>
         <tr>
           <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= "出品者名" %></td>
+          <td class="detail-value"><%= @product.user.nickname %></td>
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
-          <td class="detail-value"><%= "カテゴリー名" %></td>
+          <td class="detail-value"><%= @product.category.name %></td>
         </tr>
         <tr>
           <th class="detail-item">商品の状態</th>
-          <td class="detail-value"><%= "商品の状態" %></td>
+          <td class="detail-value"><%= @product.judgment.name%></td>
         </tr>
         <tr>
           <th class="detail-item">配送料の負担</th>
-          <td class="detail-value"><%= "発送料の負担" %></td>
+          <td class="detail-value"><%= @product.status.name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送元の地域</th>
-          <td class="detail-value"><%= "発送元の地域" %></td>
+          <td class="detail-value"><%= @product.prefecture.name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送日の目安</th>
-          <td class="detail-value"><%= "発送日の目安" %></td>
+          <td class="detail-value"><%= @product.day.name %></td>
         </tr>
       </tbody>
     </table>

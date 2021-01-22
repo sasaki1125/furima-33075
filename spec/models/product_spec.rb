@@ -13,12 +13,12 @@ RSpec.describe Product, type: :model do
     it "nameがない場合は登録できないとき" do
       @product.name = ""
       @product.valid?
-      expect(@product.errors.full_messages).to include("Name can't be blank") 
+      expect(@product.errors.full_messages).to include("Name can't be blank")
     end
     it "descriptionがない場合は登録できないとき" do
       @product.description = ""
       @product.valid?
-      expect(@product.errors.full_messages).to include("Description can't be blank")       
+      expect(@product.errors.full_messages).to include("Description can't be blank")
     end
     it "category_id 1の場合は登録できないとき" do
       @product.category_id = 1
