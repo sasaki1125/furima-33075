@@ -1,5 +1,6 @@
 class HistoriesController < ApplicationController
   before_action :authenticate_user! 
+  before_action :contributor_confirmation, only: [:index,:create]
   
   def index
     @product = Product.find(params[:product_id])
@@ -19,6 +20,11 @@ class HistoriesController < ApplicationController
   end
 
   private
+  
+  def contributor_confirmation
+    @product = Product.find(params[:product_id])
+    redirect_to root_path if current_user.id == @product.user_id
+  end
 
   def history_destination_params
     params.require(:history_destination).permit(:post_code, :prefecture_id, :city, :address, :building_name, :phone_number).merge(user_id: current_user.id, product_id: params[:product_id] ).merge(token: params[:token])

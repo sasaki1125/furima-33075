@@ -1,17 +1,17 @@
 class ProductsController < ApplicationController
-
-  before_action :authenticate_user! , except: [:index,:new]
+  before_action :authenticate_user! , except: [:index,:show]
   before_action :details, only: [:show,:edit, :update, :destroy]
   before_action :contributor_confirmation, only: [:edit, :update, :destroy]
-  
+
 
   def index
     @products = Product.includes(:user).order("created_at ASC")
   end
-  
+
   def new
     @product = Product.new
   end
+
 
   def create
     @product = Product.new(product_params)
@@ -59,5 +59,3 @@ class ProductsController < ApplicationController
   end
 
 end
-
-
