@@ -16,6 +16,8 @@ class HistoryDestination
     validates :address
     validates :phone_number,format: { with: VALID_PHONE_NUMBER_REGEX}
     validates :token
+    validates :user_id
+    validates :product_id
   end
 
   def save

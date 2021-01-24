@@ -1,9 +1,10 @@
 require 'rails_helper'
 RSpec.describe HistoryDestination, type: :model do
   before do
-    @historydestination = FactoryBot.build(:history_destination)
-    @product = FactoryBot.build(:product)
-    @user = FactoryBot.build(:user)
+    @user = FactoryBot.create(:user)
+    @product = FactoryBot.create(:product)
+    @historydestination = FactoryBot.build(:history_destination, user_id: @user.id, product_id: @product.id)
+    sleep(1)
   end
   
   
@@ -19,6 +20,17 @@ RSpec.describe HistoryDestination, type: :model do
   end
   
   context '登録できないとき' do
+    it "user_idがない場合は登録できないとき" do
+      @historydestination.user_id = ""
+      @historydestination.valid?
+      expect(@historydestination.errors.full_messages).to include("User can't be blank") 
+    end
+    it "product_idがない場合は登録できないとき" do
+      @historydestination.product_id = ""
+      @historydestination.valid?
+      expect(@historydestination.errors.full_messages).to include("Product can't be blank") 
+    end
+
     it "tokenがない場合は登録できないとき" do
       @historydestination.token = ""
       @historydestination.valid?
