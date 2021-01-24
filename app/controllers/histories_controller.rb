@@ -1,7 +1,7 @@
 class HistoriesController < ApplicationController
   before_action :authenticate_user! 
   before_action :details
-  before_action :contributor_confirmation, only: [:edit, :update, :destroy]
+  before_action :contributor_confirmation, only: [:index]
   
   def index
     
