@@ -11,6 +11,11 @@ RSpec.describe HistoryDestination, type: :model do
     it "全て入力されていれば登録できる" do
       expect(@historydestination).to be_valid
     end
+    it "現像物の記入がなくても登録できる" do
+      @historydestination.building_name = ""
+      expect(@historydestination).to be_valid
+      
+    end
   end
   
   context '登録できないとき' do

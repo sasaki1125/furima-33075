@@ -1,5 +1,5 @@
 class HistoriesController < ApplicationController
-  before_action :authenticate_user! , except: [:index,:show]
+  before_action :authenticate_user! 
   before_action :details
   before_action :contributor_confirmation, only: [:edit, :update, :destroy]
   
@@ -24,7 +24,7 @@ class HistoriesController < ApplicationController
   
   def contributor_confirmation
     
-    redirect_to root_path if current_user.id == @product.user_id && @product.history
+    redirect_to root_path if current_user.id == @product.user_id || @product.history
   end
 
   def history_destination_params
