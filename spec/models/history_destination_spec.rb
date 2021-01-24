@@ -59,7 +59,11 @@ RSpec.describe HistoryDestination, type: :model do
       @historydestination.valid?
       expect(@historydestination.errors.full_messages).to include("Phone number is invalid") 
     end
-    
+    it "電話番号が11桁内でないと登録できないとき" do
+      @historydestination.phone_number = "123456789123"
+      @historydestination.valid?
+      expect(@historydestination.errors.full_messages).to include("Phone number is invalid") 
+    end
     
   end
 end
