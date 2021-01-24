@@ -67,6 +67,3 @@
 - belongs_to :product
 - has_one :destination
 
-
-
-
