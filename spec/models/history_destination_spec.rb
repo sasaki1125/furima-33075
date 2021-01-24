@@ -54,6 +54,11 @@ RSpec.describe HistoryDestination, type: :model do
       @historydestination.valid?
       expect(@historydestination.errors.full_messages).to include("Phone number can't be blank") 
     end
+    it "電話番号に英数字がある場合は登録できないとき" do
+      @historydestination.phone_number = "0123abc456789"
+      @historydestination.valid?
+      expect(@historydestination.errors.full_messages).to include("Phone number is invalid") 
+    end
     it "電話番号に-がある場合は登録できないとき" do
       @historydestination.phone_number = "012-2345-6789"
       @historydestination.valid?
