@@ -15,7 +15,7 @@ class Product < ApplicationRecord
   with_options presence: true do
     validates :name
     validates :description
-    validates :price,numericality: { only_integer: true,greater_than: 299, less_than: 9999999}
+    validates :price,numericality: { only_integer: true,greater_than: 299, less_than: 10000000}
     validates :image
 
   end

@@ -9,7 +9,6 @@ class HistoriesController < ApplicationController
   end
   
   def create
-    
     @history = HistoryDestination.new(history_destination_params)
     if @history.valid?
       pay_item
