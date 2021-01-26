@@ -26,6 +26,10 @@ class ProductsController < ApplicationController
   end
 
   def  edit
+    @history =  HistoryDestination.new
+    if @product.history 
+    redirect_to root_path 
+    end
   end
   
   def update
